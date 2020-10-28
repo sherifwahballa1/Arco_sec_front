@@ -1,0 +1,27 @@
+<div class="mainClass">
+  <p>&nbsp;</p>
+  <h2>Upload Your Files</h2>
+  <button class="danger">What?</button>
+
+  <p>&nbsp;</p>
+  <div class="container">
+    <div class="row">
+      <div  class="col fileImg">
+      <!-- {img} -->
+      </div>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+
+  <form (submit)="onSubmit($event)" class="form1">
+    <div>
+      <!-- <label htmlFor="files"  class="btn">Select File</label> -->
+      <input id="files"  type="file" (change)="captureFile($event)" />
+    </div>
+
+    <input type='submit' class="submit" />
+  </form>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <!-- {button} -->
+</div>
