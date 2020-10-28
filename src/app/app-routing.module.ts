@@ -2,6 +2,8 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { LoginComponent } from './components/user/login/login.component';
 import { SignupComponent } from './components/user/signup/signup.component';
 import { VerifyComponent } from './components/verify/verify.component';
 import { AuthGuardService } from './core/authentication/authGuard.service';
@@ -40,19 +42,20 @@ const routes: Routes = [
     component: SignupComponent,
     canActivate: [LoginGuardService]
   },
-  // {
-  //   path: 'sign',
-  //   component: LoginComponent,
-  //   canActivate: [LoginGuardService]
-  // },
+  {
+    path: 'sign',
+    component: LoginComponent,
+    canActivate: [LoginGuardService]
+  },
+  {
+    path: 'forget',
+    component: ForgetPasswordComponent,
+    canActivate: [TempGuardService]
+  },
   // {
   //   path: 'settings',
   //   component: ChangePasswordComponent,
   //   canActivate: [AuthGuardService]
-  // },
-  // {
-  //   path: 'rules',
-  //   component: RulesComponent
   // },
   {
     path: 'home',
@@ -74,21 +77,6 @@ const routes: Routes = [
     component: VerifyComponent,
     canActivate: [TempGuardService]
   },
-  // {
-  //   path: 'forget',
-  //   component: ForgetPasswordComponent,
-  //   canActivate: [TempGuardService]
-  // },
-  // {
-  //   path: 'challenge/:id',
-  //   component: ChallengeComponent,
-  //   canActivate: [AuthGuardService, DateGuardService, FinishGuardService]
-  // },
-  // {
-  //   path: 'leaderboard',
-  //   component: LeaderboardComponent,
-  //   canActivate: [AuthGuardService, DateGuardService]
-  // },
   {
     path: '**',
     component: LandingComponent

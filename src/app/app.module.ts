@@ -28,6 +28,7 @@ import { SignupComponent } from './components/user/signup/signup.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { VerifyComponent } from './components/verify/verify.component';
 import { HomeComponent } from './components/home/home.component';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     LandingComponent,
     VerifyComponent,
-    HomeComponent
+    HomeComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserAnimationsModule,
