@@ -1,0 +1,23 @@
+
+
+<div class="login">
+  <form [formGroup]="loginForm">
+    <div>
+        <input formControlName="email" placeholder="Email" type="email"
+            class="INPUT" [class.is-invalid]="forgetFlag">
+    </div>
+    <div>
+        <input formControlName="password" placeholder="Password" minLength="10" maxLength="25" type="password"
+            class="INPUT">
+    </div>
+    <div class="row mb-4" style="margin-top: 2%;">
+      <div class="buttondiv">
+          <button class="loginBtn" type="submit" (click)="submitLoginForm()"> LOG IN </button>
+          <button class="forgetBtn" (click)="GoToForgetPassword()"> Forget Password </button>
+      </div>
+    </div>
+
+
+  </form>
+
+</div>

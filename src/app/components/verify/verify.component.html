@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row mb-4">
+      <div class="col-lg-5  col-sm-5 col-xs-3"></div>
+      <div class="col-lg-2 col-sm-2 col-xs-6">
+        <div class="logodiv">
+          <img class="logim" src="./assets/logo2.png" style="width: 70%; padding-top: 27%;">
+          <img class="logim" src="./assets/ll-32 yellow.png" style="width: 92%; padding-top: 2%; padding-bottom: 11px;">
+      </div>
+      </div>
+      <div class="col-lg-5  col-sm-4 "> </div>
+  </div>
+  <div class="row mb-4">
+      <div class="word">
+          <p class="subtitle">"Welcome to Arab Security Cyber Wargames Champioship."</p>
+          <p class="subtitle">"Please check your email to verify your account"</p>
+      </div>
+  </div>
+  <div class="row mb-4 ">
+      <div class="buttondiv">
+          <form [formGroup]="otpForm">
+              <div class="opt">
+                  <input formControlName="otp" placeholder="OTP" type="text" class="INPUT" style="width: 100%; height: 200%;" #v>
+              </div>
+              <button class="logButton" type="submit" (click)="verify()">CONFIRM</button>
+          </form>
+      </div>
+  </div>
+
+
+</div>

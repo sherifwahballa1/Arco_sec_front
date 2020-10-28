@@ -1,0 +1,70 @@
+input:focus,
+button:active,
+button:focus {
+  outline: none;
+}
+
+.logButton {
+  margin-left: 0px;
+  background-color: #700200;
+  opacity: 75%;
+  border: none;
+  /* width: 488px; */
+  color: #FFDA87;
+  height: 36px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.INPUT {
+  margin-top: 5px !important;
+  margin-bottom: 5px;
+  /* width: 488px; */
+  border: none;
+  padding: 8px;
+}
+
+mat-form-field {
+  /* width: 488px; */
+  background: white;
+  height: 40px;
+  margin-top: 5px;
+}
+
+small {
+  color: #FFDA87;
+  background: #700200;
+  opacity: 75%;
+  padding: 4px;
+}
+
+
+
+
+
+@media screen and (min-width: 521px) {
+  .INPUT{
+    width: 488px;
+  }
+
+  mat-form-field {
+    width: 488px;
+  }
+
+  .logButton{
+    width: 488px;
+}
+}
+
+@media screen and (max-width: 520px) {
+  .INPUT{
+    width: 323px;
+  }
+
+  mat-form-field {
+    width: 323px;
+  }
+  .logButton {
+    width: 323px;
+  }
+}

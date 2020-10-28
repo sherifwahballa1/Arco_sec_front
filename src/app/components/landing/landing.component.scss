@@ -1,0 +1,297 @@
+input:focus,
+button:active,
+button:focus {
+  outline: none;
+}
+
+.container-fluid {
+  height: 830px;
+  background-image: url('https://res.cloudinary.com/sherif-wahballa/image/upload/v1595615240/Background2020_u6di3n.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+  font-size: 14px;
+  overflow: hidden;
+
+}
+
+.logodiv {
+  background-color: #303F5D;
+  opacity: 85%;
+  border-bottom: 10px solid #700200;
+  text-align: center;
+}
+
+.logoImg {
+  padding-top: 27%;
+}
+
+.logotext {
+  padding-top: 2%;
+  padding-bottom: 11px;
+}
+
+.word {
+  background-color: #700200;
+  width: 50%;
+  opacity: 80%;
+  color: #FFDA87;
+  margin: auto;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+
+  text-shadow: 4px 4px 4px #48414194;
+}
+
+.subtitle {
+  margin: 0px;
+}
+
+.buttondiv {
+  margin: auto;
+  text-align: center;
+}
+
+.loginPutton {
+  background-color: #303F5D;
+  opacity: 85%;
+  border: none;
+  // width: 239px;
+  color: #FFDA87;
+  height: 36px;
+  // margin-right: 5px;
+  font-weight: bold;
+}
+
+.loginActive {
+  background-color: #303F5D;
+  opacity: 85%;
+  border: none;
+  color: #FFDA87;
+  height: 36px;
+
+  // width: 344px;
+  // margin-right: 5px;
+  font-weight: bold;
+}
+
+.loginnotActive {
+  background-color: #303F5D;
+  opacity: 85%;
+  border: none;
+  color: #FFDA87;
+  height: 36px;
+  font-weight: bold;
+  // width: 85px;
+  // margin-right: 5px;
+}
+
+.sigupPutton {
+  font-weight: bold;
+  background-color: #700200;
+  opacity: 75%;
+  border: none;
+  // width: 239px;
+  color: #FFDA87;
+  height: 36px;
+}
+
+.sigupActive {
+  background-color: #700200;
+  opacity: 75%;
+  border: none;
+  color: #FFDA87;
+  height: 36px;
+  // width: 400px;
+  font-weight: bold;
+}
+
+.sigupnotActive {
+  background-color: #700200;
+  opacity: 75%;
+  border: none;
+  color: #FFDA87;
+  height: 36px;
+  // width: 140px;
+  font-weight: bold;
+}
+
+div.login {
+  margin: auto;
+  text-align: center;
+  /* height: 245px; */
+  // width: 508px;
+}
+
+div.sinup {
+  margin: auto;
+  text-align: center;
+  /* height: 333px; */
+  // width: 508px;
+}
+
+
+
+// -------------------------------//---------------------------------
+// ----------------------------------------------------------------
+
+app-login,
+app-signup {
+  margin: 0 auto;
+}
+
+
+// --------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+@media screen and (min-width: 992px) {
+
+  .logoDiv {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .logoImg {
+    width: 70%;
+  }
+
+  .logotext {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+
+  .logoDiv {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .logoImg {
+    width: 70%;
+  }
+
+  .logotext {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+
+  .logoDiv {
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .logoImg {
+    width: 40%;
+    margin-top: -38px;
+    padding-bottom: 51px;
+  }
+
+  .logotext {
+    width: 40%;
+    position: absolute;
+    top: 133px;
+    left: 94px;
+  }
+}
+
+@media screen and (max-width: 495px) {
+  .logotext {
+    width: 40%;
+    position: absolute;
+    top: 117px;
+    left: 79px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logotext {
+    width: 40%;
+    position: absolute;
+    top: 80px;
+    left: 64px;
+  }
+}
+
+
+
+@media screen and (min-width: 521px) {
+  .loginPutton {
+    width: 239px;
+    margin-right: 5px;
+  }
+
+  .loginActive {
+    width: 344px;
+    margin-right: 5px;
+  }
+
+  .loginnotActive {
+    width: 85px;
+    margin-right: 5px;
+  }
+
+  .sigupPutton {
+    width: 239px;
+  }
+
+  .sigupActive {
+    width: 400px;
+  }
+
+  .sigupnotActive {
+    width: 140px;
+  }
+
+  div.login {
+    width: 508px;
+  }
+
+  div.sinup {
+    width: 508px;
+  }
+}
+
+
+@media screen and (max-width: 520px) {
+  .loginPutton {
+    width: 139px;
+    margin-right: 5px;
+  }
+
+  .loginActive {
+    width: 230px;
+    margin-right: 5px;
+  }
+
+  .loginnotActive {
+    width: 85px;
+    margin-right: 5px;
+  }
+
+  .sigupPutton {
+    width: 139px;
+  }
+
+  .sigupActive {
+    width: 230px;
+  }
+
+  .sigupnotActive {
+    width: 85px;
+  }
+
+  div.login {
+    width: 508px;
+  }
+
+  div.sinup {
+    width: 508px;
+  }
+}

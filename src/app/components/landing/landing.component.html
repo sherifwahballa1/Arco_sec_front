@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-lg-5  col-sm-5 col-xs-3"></div>
+    <div class="col-lg-2 col-sm-2 col-xs-6">
+      <div class="logodiv">
+        <img class="logoImg" src="https://res.cloudinary.com/sherif-wahballa/image/upload/v1595673695/wg/logo2_sjqzie.png">
+        <img class="logotext" src="https://res.cloudinary.com/sherif-wahballa/image/upload/v1595673695/wg/ll-32_yellow_sacizd.png">
+      </div>
+    </div>
+    <div class="col-lg-5  col-sm-4 "> </div>
+  </div>
+  <div class="row mb-4" style="margin-top: 4%;">
+    <div class="word">
+      <p class="subtitle">"Welcome to Arab Security Cyber Wargames Champioship."</p>
+      <p class="subtitle">"Before we start please sign up and login to join the party. May the odds be in your
+        favor, Good luck."</p>
+    </div>
+  </div>
+  <div class="row mb-4" style="margin-top: 2%;">
+    <div class="buttondiv">
+      <button class="{{login}}" (click)="openLogincom()"> LOG IN </button>
+      <button class="{{sigup}}" (click)="openSignupcom()"> SIGN UP </button>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <app-login *ngIf="loginFlag"></app-login>
+    <app-signup *ngIf="signupFlag" (signedup)="openLogincom()"></app-signup>
+  </div>
+
+
+</div>

@@ -1,0 +1,47 @@
+<div class="signup">
+
+  <form [formGroup]="signupForm">
+    <div *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
+      <small  *ngIf="signupForm.get('name').errors?.required">*Team Name is required</small>
+      <small
+        *ngIf="signupForm.get('name').errors?.minlength || signupForm.get('name').errors?.maxlength">*Team Name must be
+        more than 4 characters and less than 25</small>
+        <small
+        *ngIf="signupForm.get('name').errors?.pattern">*Team Name must be
+        characters and numbers only without whitespace</small>
+    </div>
+    <div>
+      <input formControlName="name" placeholder="Team Name" type="text" class="INPUT">
+    </div>
+    <div *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
+      <small  *ngIf="signupForm.get('email').errors?.required">*Email is required</small>
+      <small  *ngIf="signupForm.get('email').errors?.email">*Invalid Email</small>
+    </div>
+    <div>
+      <input formControlName="email" placeholder="Email" type="email" class="INPUT">
+    </div>
+    <div *ngIf="password.invalid && password.touched">
+      <small  *ngIf="password.errors?.required">*Password is required</small>
+      <small *ngIf="password.errors?.pattern"
+        style="margin-left: -30px;">{{password.errors?.pattern.value}}* Password Must contain characters, numbers and at
+        least one special and capital character</small>
+    </div>
+    <div>
+      <input formControlName="password" placeholder="Password" minLength="10" maxLength="25" type="password"
+        class="INPUT">
+    </div>
+    <small  *ngIf="signupForm.errors?.misMatch">*confirm password and password not match</small>
+    <div>
+      <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" class="INPUT">
+    </div>
+
+    <!-- <div>
+    <input formControlName="country" placeholder="Country" type="text" class="INPUT">
+  </div> -->
+    <button class="logButton" type="submit" (click)="submitSignupForm()">CONFIRM REGISTER</button>
+  </form>
+
+  <!-- <mat-select-country>
+</mat-select-country> -->
+
+</div>
