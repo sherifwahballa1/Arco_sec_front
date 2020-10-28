@@ -24,6 +24,9 @@ export class VerifyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.param = params['id'];
+    });
     this.arcoService.sendVerification().subscribe(responseMessage => {
       if (!responseMessage['message'].includes('Please Check your Email')) {
         this.authService.logoutTemp();
@@ -32,13 +35,11 @@ export class VerifyComponent implements OnInit {
         this.helper.alert('Please Check your Email');
       }
     }, (err) => {
+      console.log('err ', err);
       this.helper.alert("Please try again at another time", true);
       this.router.navigate(['/login'], { replaceUrl: true });
     });
 
-    this.route.params.subscribe((params) => {
-      this.param = params['id'];
-    });
     this.otpForm = this.initOtpForm();
   }
 

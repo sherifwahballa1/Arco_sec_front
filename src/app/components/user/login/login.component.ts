@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.get('email').value !== '' || this.loginForm.get('email').value !== undefined && this.loginForm.get('email').valid) {
       this.arcoService.forgetPassword(this.loginForm.get('email').value).subscribe(token => {
         this.authService.logInTemp(token);
-        this.router.navigate(['/forget'], { replaceUrl: true });
+        this.router.navigate(['/verify/password'], { replaceUrl: true });
       }, err => {
         console.log(err);
         this.helper.alert(err, true);
