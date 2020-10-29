@@ -29,6 +29,11 @@ import { LandingComponent } from './components/landing/landing.component';
 import { VerifyComponent } from './components/verify/verify.component';
 import { HomeComponent } from './components/home/home.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LeftPaneComponent } from './components/left-pane/left-pane.component';
+import { MailListComponent } from './components/mail-list/mail-list.component';
+import { MailPreviewComponent } from './components/mail-preview/mail-preview.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
     LandingComponent,
     VerifyComponent,
     HomeComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    HeaderComponent,
+    LeftPaneComponent,
+    MailListComponent,
+    MailPreviewComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserAnimationsModule,
