@@ -1,10 +1,10 @@
-export interface DocumentTag {
+export interface IDocumentTag {
     name: string
     value: string
 }
 
 export class MailDocument {
-    tags: Array<DocumentTag> = [];
+    tags: Array<IDocumentTag> = [];
     id: string
     type: string
     name: string
