@@ -27,18 +27,6 @@ export class VerifyComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.param = params['id'];
     });
-    this.arcoService.sendVerification().subscribe(responseMessage => {
-      if (!responseMessage['message'].includes('Please Check your Email')) {
-        this.authService.logoutTemp();
-        this.router.navigate(['/login'], { replaceUrl: true });
-      } else {
-        this.helper.alert('Please Check your Email');
-      }
-    }, (err) => {
-      console.log('err ', err);
-      this.helper.alert("Please try again at another time", true);
-      this.router.navigate(['/login'], { replaceUrl: true });
-    });
 
     this.otpForm = this.initOtpForm();
   }

@@ -9,23 +9,7 @@ import { VerifyComponent } from './components/verify/verify.component';
 import { AuthGuardService } from './core/authentication/authGuard.service';
 import { LoginGuardService } from './core/authentication/loginGuard.service';
 import { TempGuardService } from './core/authentication/tempGuard.service';
-// import { SignupComponent } from './components/user/signup/signup.component';
-// import { LoginComponent } from './components/user/login/login.component';
-// import { HomeComponent } from './components/home/home.component';
-// import { LoginGuardService } from './core/authentication/loginGuard.service';
-// import { AuthGuardService } from './core/authentication/authGuard.service';
-// import { LandingComponent } from './components/landing/landing.component';
-// import { VerifyComponent } from './components/verify/verify.component';
-// import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
-// import { TempGuardService } from './core/authentication/tempGuard.service';
-// import { ChallengeComponent } from './components/challenge/challenge.component';
-// import { StartComponent } from './components/start/start.component';
-// import { DateGuardService } from './core/authentication/dateGuard.service';
-// import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
-// import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
-// import { ProfileComponent } from './components/user/profile/profile.component';
-// import { RulesComponent } from './components/rules/rules.component';
-// import { FinishGuardService } from './core/authentication/finishGuard.service';
+
 
 const routes: Routes = [
   {
