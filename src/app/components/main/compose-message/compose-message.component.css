@@ -1,0 +1,70 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+form {
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+input {
+  height: 45px;
+  font-weight: bold;
+}
+
+h5 {
+  padding-left: 10px;
+  color: #6c757d;
+}
+
+textarea {
+  resize: none;
+}
+
+
+.footer {
+  margin-top: 85px;
+}
+.footer .send {
+
+  outline: none;
+  background: #335997;
+  border: none;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.footer .attach_file {
+  outline: none;
+  border: none;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+  margin-left: 20px;
+  padding-top: 8px;
+}
+
+.imageUploaded {
+  width: 100px;
+  margin-top: -150px;
+  margin-left: -209px;
+}
+
+
+.cancelImage {
+  position: absolute;
+  margin-top: -198px;
+  margin-left: 84px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  outline: none;
+}

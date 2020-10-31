@@ -26,9 +26,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { SignupComponent } from './components/user/signup/signup.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { VerifyComponent } from './components/verify/verify.component';
-import { HomeComponent } from './components/home/home.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { VerifyComponent } from './components/user/verify/verify.component';
+import { HomeComponent } from './components/main/home/home.component';
+import { ComposeMessageComponent } from './components/main/compose-message/compose-message.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
     LandingComponent,
     VerifyComponent,
     HomeComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    ComposeMessageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,6 +69,7 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
+  entryComponents: [ComposeMessageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

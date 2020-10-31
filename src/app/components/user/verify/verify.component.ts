@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../core/authentication/auth.service';
-import { ArcosecService } from '../../core/services/arcosec.service';
-import { HelperService } from '../../core/services/helper.service';
+import { HelperService } from '../../../core/services/helper.service';
+import { AuthService } from '../../../core/authentication/auth.service';
+import { ArcosecService } from '../../../core/services/arcosec.service';
 
 @Component({
   selector: 'app-verify',
@@ -14,6 +14,7 @@ export class VerifyComponent implements OnInit {
 
   otpForm: FormGroup;
   param: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private helper: HelperService,

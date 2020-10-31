@@ -105,6 +105,7 @@ export class LandingComponent implements OnInit {
         this.helper.alert("Enter Email and Password", true);
       }
     }
+    this.clickedLogin = false;
   }
 
   GoToForgetPassword() {
@@ -123,6 +124,7 @@ export class LandingComponent implements OnInit {
       this.forgetFlag = true;
       this.helper.alert("Please Enter Valid Email Address", true);
     }
+    this.signupForm.enable();
   }
 
   get password() {
@@ -208,6 +210,7 @@ export class LandingComponent implements OnInit {
       }
 
     }
+    this.clickedSignup = false;
   }
 
   sendVerification() {
