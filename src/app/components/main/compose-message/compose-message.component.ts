@@ -1,6 +1,7 @@
- import { Component, Inject, OnInit } from '@angular/core';
+ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ArcosecService } from '../../../core/services/arcosec.service';
 
 @Component({
   selector: 'app-compose-message',
@@ -13,9 +14,14 @@ export class ComposeMessageComponent implements OnInit {
   isFileExists = false;
   fileName: '';
   isFileNameExists = false;
+  allMails: any;
+  emailValue: string = '';
+
+  @ViewChild('mySelect', { static: true }) mySelect: any;
 
   constructor(
     private formBuilder: FormBuilder,
+    private arcoService: ArcosecService,
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -55,6 +61,21 @@ export class ComposeMessageComponent implements OnInit {
       }
 
     }
+  }
+
+  searchbyEmail(e) {
+    this.arcoService.getEmails(e).subscribe(data => {
+      this.mySelect.open();
+      this.allMails = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  emailSelected(e) {
+    this.sendEmailForm.patchValue({
+      receipeintEmail: e.value
+    });
   }
 
 }

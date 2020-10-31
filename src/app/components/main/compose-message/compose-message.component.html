@@ -8,7 +8,10 @@
 
 <form [formGroup]="sendEmailForm" >
   <div class="form-group">
-    <input type="email" formControlName="receipeintEmail" class="form-control" placeholder="Recipient">
+    <input type="email" formControlName="receipeintEmail" class="form-control" placeholder="Recipient" (ngModelChange)="searchbyEmail($event)">
+    <mat-select  #mySelect (selectionChange)="emailSelected($event)">
+      <mat-option *ngFor="let mail of allMails " [value]="mail.email">{{mail.email}}</mat-option>
+  </mat-select>
   </div>
   <h5>Subject</h5>
   <div class="form-group">

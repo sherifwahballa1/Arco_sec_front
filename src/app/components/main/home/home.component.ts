@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   openMessage() {
     const dialogRef = this.dialog.open(ComposeMessageComponent, {
       width: '950px',
-      height: '500px',
+      height: '530px',
       data: {name: 'sherif', age: '25'}
     });
 

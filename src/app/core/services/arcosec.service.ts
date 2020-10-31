@@ -75,6 +75,10 @@ export class ArcosecService {
     return this.httpClient.post(`${environment.host}/user/team-profile/${teamId}`, {});
   }
 
+  getEmails(email) {
+    return this.httpClient.post(`${environment.host}/user/emails`, { email });
+  }
+
 
   // getAllChallenges() {
   //   return this.httpClient.post(`${environment.host}/challenge/all-challenge`, {});
