@@ -120,9 +120,10 @@ export class SignupComponent implements OnInit {
         return this.helper.alert(
           "Confirm password and password not match", true
         );
-      } else {
-        return this.helper.alert("Please Select Country", true);
-      }
+      } 
+      // else {
+      //   return this.helper.alert("Please Select Country", true);
+      // }
 
     }
   }

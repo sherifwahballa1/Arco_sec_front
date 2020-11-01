@@ -1,6 +1,6 @@
- import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ArcosecService } from '../../../core/services/arcosec.service';
 
 @Component({
@@ -33,7 +33,8 @@ export class ComposeMessageComponent implements OnInit {
   initSendEmailForm() {
     return this.formBuilder.group({
       receipeintEmail: new FormControl('', [Validators.required, Validators.email]),
-      subject: new FormControl('', [])
+      subject: new FormControl('', []),
+      documentTags: this.formBuilder.array([ this.createTag() ])
     });
   }
 
@@ -78,4 +79,24 @@ export class ComposeMessageComponent implements OnInit {
     });
   }
 
+  get documentTags() {
+    const items = this.sendEmailForm.get('documentTags') as FormArray;
+    return this.sendEmailForm.get('documentTags') as FormArray;
+  };
+
+
+  addNewTag(){
+    this.documentTags.push(this.createTag());
+  }
+
+  deleteTag(i){
+    this.documentTags.removeAt(i);
+  }
+
+  createTag(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      value: ''
+    });
+  }
 }

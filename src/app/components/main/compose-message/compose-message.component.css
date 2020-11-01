@@ -72,3 +72,16 @@ input[type="file"] {
 ::ng-deep .mat-select-arrow {
   display: none;
 }
+
+.tags-container {
+  display: grid;
+  grid-template-columns: auto auto min-content;
+  align-content: center;
+  grid-gap: 10px;
+  margin-bottom: 5px;
+}
+
+.form-buttons {
+  border-radius: 5px;
+  border: none;
+}

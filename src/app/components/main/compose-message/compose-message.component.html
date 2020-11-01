@@ -17,6 +17,19 @@
   <div class="form-group">
     <textarea class="form-control" formControlName="subject" id="exampleFormControlTextarea1" rows="6"></textarea>
   </div>
+  <h5>Tags</h5>
+  <div formArrayName="documentTags" class="form-group">
+    <div *ngFor="let contentItem of documentTags.controls; let i=index">
+      <div class="tags-container" [formGroupName]="i">
+        <input type="text" formControlName="name" class="form-control tag-input" placeholder="tag name">
+        <input type="text" formControlName="value" class="form-control tag-input" placeholder="tag value">
+        <button (click)="deleteTag(i)" class="form-buttons">Remove</button>
+      </div>
+    </div>
+  </div>
+  <button (click)="addNewTag()" class="form-buttons">
+    Add new tag
+  </button>
 
   <mat-toolbar class="footer">
     <input type="submit" value ="Send" class="send" />
