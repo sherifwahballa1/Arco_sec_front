@@ -32,6 +32,9 @@ import { HomeComponent } from './components/main/home/home.component';
 import { ComposeMessageComponent } from './components/main/compose-message/compose-message.component';
 import { HeaderComponent } from './components/header/header.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:5100', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +67,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
