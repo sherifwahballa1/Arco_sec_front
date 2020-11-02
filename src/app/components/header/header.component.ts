@@ -17,14 +17,14 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private helper: HelperService,
     private arcoService: ArcosecService,
-    private tokenService: TokenService,
+    private tokenService: TokenService
   ) { }
 
-  ngOnInit() {
+   ngOnInit() {
 
     if (this.tokenService.token) {
       this.isloggedIn = true;
-      this.arcoService.getProfile().subscribe(data => {
+       this.arcoService.getProfile().subscribe(data => {
         this.username = data['name'].toString();
       }, err => {
         this.helper.alert(err + ' try again after 1 hour', true);

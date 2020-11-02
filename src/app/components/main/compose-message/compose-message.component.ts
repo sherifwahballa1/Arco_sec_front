@@ -2,6 +2,8 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ArcosecService } from '../../../core/services/arcosec.service';
+import { Socket } from 'ngx-socket-io';
+import { TokenService } from '../../../core/authentication/token.service';
 
 @Component({
   selector: 'app-compose-message',
@@ -17,17 +19,26 @@ export class ComposeMessageComponent implements OnInit {
   allMails: any;
   emailValue: string = '';
 
+  myEmailAddress: string = '';
+
   @ViewChild('mySelect', { static: true }) mySelect: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private arcoService: ArcosecService,
+    private socket: Socket,
+    private tokenService: TokenService,
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
     this.sendEmailForm = this.initSendEmailForm();
+    if (this.tokenService.token) {
+      this.arcoService.getProfile().subscribe(data => {
+        this.myEmailAddress = data['email'].toString();
+      });
+    }
   }
 
   initSendEmailForm() {
@@ -99,4 +110,8 @@ export class ComposeMessageComponent implements OnInit {
       value: ''
     });
   }
+  sendMail() {
+    this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
+  }
+
 }

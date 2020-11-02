@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ComposeMessageComponent } from '../compose-message/compose-message.component';
+import { TokenService } from '../../../core/authentication/token.service';
+import { ArcosecService } from '../../../core/services/arcosec.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +12,26 @@ import { ComposeMessageComponent } from '../compose-message/compose-message.comp
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  myEmailAddress: string = '';
+
+  constructor(
+    public dialog: MatDialog,
+    private tokenService: TokenService,
+    private arcoService: ArcosecService,
+    private socket: Socket
+  ) { }
 
   ngOnInit() {
+    if (this.tokenService.token) {
+      this.arcoService.getProfile().subscribe(data => {
+        this.myEmailAddress = data['email'].toString();
+        this.socket.emit('joinRequest', { sender: this.myEmailAddress });
+      });
+    }
+
+    this.socket.on('newMailRequest', (data) => {
+      console.log('data: ', data);
+    });
   }
 
   openMessage() {

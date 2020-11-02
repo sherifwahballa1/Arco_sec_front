@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
   //   loop: true
   // });
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private socket: Socket) {
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
@@ -30,6 +31,11 @@ export class AppComponent {
         }
       }
     });
+
+    // this.socket.emit('message', { name: 'sherif'});
+    // this.socket.on('message from back', (data) => {
+    //   console.log(data.name);
+    // });
   }
 
   ngOnInit() {
