@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import { ArcosecService } from '../../../core/services/arcosec.service';
 import { Socket } from 'ngx-socket-io';
 import { TokenService } from '../../../core/authentication/token.service';
+import { IpfsService } from '../../../core/ipfs/ipfs.service';
 
 @Component({
   selector: 'app-compose-message',
@@ -28,6 +29,7 @@ export class ComposeMessageComponent implements OnInit {
     private arcoService: ArcosecService,
     private socket: Socket,
     private tokenService: TokenService,
+    public ipfsService: IpfsService,
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -111,7 +113,13 @@ export class ComposeMessageComponent implements OnInit {
     });
   }
   sendMail() {
-    this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
+    //send ipfs get hash 
+    // todo service ipfs
+    // create mail
+    //send mail to contract
+    //listen to event
+      //add mail to inbox and outbox
+      this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
   }
 
 }
