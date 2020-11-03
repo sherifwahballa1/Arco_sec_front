@@ -9,7 +9,7 @@ import { LoginGuardService } from './core/authentication/loginGuard.service';
 import { TempGuardService } from './core/authentication/tempGuard.service';
 import { VerifyComponent } from './components/user/verify/verify.component';
 import { HomeComponent } from './components/main/home/home.component';
-
+import { ViewMessageComponent} from './components/main/view-message/view-message.component'
 
 const routes: Routes = [
   {
@@ -47,6 +47,13 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService]
   },
+ {
+    path: 'message/:id',
+    component: ViewMessageComponent,
+    //canActivate: [AuthGuardService]
+  },
+
+
   // {
   //   path: 'profile',
   //   component: ProfileComponent,

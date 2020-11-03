@@ -76,41 +76,46 @@
         </div>
 
         <ul class="messages">
-            <li class="message unread">
-                <a href="#">
+            <li class="message unread" (click) = "viewMessage($event)">
+                <a>
                     <div class="actions">
                         <span class="action"><i class="fa fa-square-o"></i></span>
                         <span class="action"><i class="fa fa-star-o"></i></span>
                     </div>
                     <div class="header">
-                        <span class="from">Lukasz Holeczek</span>
+                        <span class="from">Sarah Seif</span>
                         <span class="date">
                         <span class="fa fa-paper-clip"></span> Today, 3:47 PM</span>
                     </div>
                     <div class="title">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Imports Notification
                     </div>
                     <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        I am writing in reference to the current situation with the Skipton Airport Project. We have a number of questions which we hope you could answer.
+                        <p> First of all, could you please provide us with an update on where you are on the Skipton Airport Project. We would also appreciate it if you could clarify what the current issues with the delivery system are, and confirm when you expect them to be resolved.</p>
+                       
                     </div>
                 </a>
             </li>
-            <li class="message">
-                <a href="#">
+            <li class="message" (click) = "viewMessage($event)">
+                <a>
                     <div class="actions">
                         <span class="action"><i class="fa fa-square-o"></i></span>
                         <span class="action"><i class="fa fa-star-o"></i></span>
                     </div>
                     <div class="header">
-                        <span class="from">Lukasz Holeczek</span>
+                        <span class="from">David Mitchell</span>
                         <span class="date">
-                        <span class="fa fa-paper-clip"></span> Today, 3:47 PM</span>
+                        <span class="fa fa-paper-clip"></span> October 27th, 2020</span>
                     </div>
                     <div class="title">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Skipton Airport Project
                     </div>
                     <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                       <p>Dear Mr McAdam,</p>
+                       <p>With reference to your last email regarding the current situation with the Skipton Airport Project, I can confirm the following:</p>
+                       <p>We successfully completed stage 2 on Monday and at present we are preparing to start stage 3. On the whole, the project is going well. We have not .......</p>
+                      
                     </div>
                 </a>
             </li>

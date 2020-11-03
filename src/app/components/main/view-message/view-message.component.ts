@@ -4,14 +4,13 @@ import { ComposeMessageComponent } from '../compose-message/compose-message.comp
 import { TokenService } from '../../../core/authentication/token.service';
 import { ArcosecService } from '../../../core/services/arcosec.service';
 import { Socket } from 'ngx-socket-io';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-view-message',
+  templateUrl: './view-message.component.html',
+  styleUrls: ['./view-message.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ViewMessageComponent implements OnInit {
 
   myEmailAddress: string = '';
 
@@ -19,8 +18,7 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     private tokenService: TokenService,
     private arcoService: ArcosecService,
-    private socket: Socket,
-    private router: Router
+    private socket: Socket
   ) { }
 
   ngOnInit() {
@@ -47,12 +45,6 @@ export class HomeComponent implements OnInit {
       console.log('The dialog was closed');
       // this.animal = result;
     });
-  } 
-  
-  viewMessage(event) {
-    // todo
-    // event.preventDefault()
-    this.router.navigate(['/message/1']);
   }
 
 }

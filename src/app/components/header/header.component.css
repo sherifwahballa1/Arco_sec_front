@@ -1,5 +1,5 @@
 .navbar-dark, .nav-left{
-  background-color: #4d84e2;
+  background-color:  #5995fd;
 }
 
 .dropdown-item {
@@ -10,5 +10,29 @@
   cursor: pointer;
 }
 
+.logo a img{
+max-width: 100%;
+max-height: 60px;
+}
 
+.logo {
+  max-width: 200px;
+  padding: 0 10px;
+  overflow: hidden;
+  border-radius: 50%;
+  
+}
 
+.logo a {
+ 
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  width: 30px;
+
+}
