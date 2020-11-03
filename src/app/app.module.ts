@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/authentication.interceptor';
 
 import { AppComponent } from './app.component';
-import {MetaModule} from './meta/meta.module';
+import { MetaModule } from './meta/meta.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -33,7 +33,7 @@ import { ComposeMessageComponent } from './components/main/compose-message/compo
 import { HeaderComponent } from './components/header/header.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:5100', options: {} };
 
 @NgModule({
   declarations: [

@@ -52,8 +52,7 @@ export class ComposeMessageComponent implements OnInit {
       receipeintEmail: new FormControl('', [Validators.required, Validators.email]),
       subject: new FormControl('', []),
       body: new FormControl('', []),
-      documentTags: this.formBuilder.array([this.createTag()]),
-      ipfsHash: new FormControl('', []),
+      documentTags: this.formBuilder.array([this.createTag()])
     });
   }
 
@@ -126,28 +125,24 @@ export class ComposeMessageComponent implements OnInit {
       return this.sendEmailForm.markAllAsTouched();
 
     }
-    let ipfsHash;
 
+    let ipfsHash;
     if (this.fileSrc) {
       //send ipfs get hash 
-      let ipfsHah = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
-      if (ipfsHah) {
-        this.sendEmailForm.value['ipfsHash'] = ipfsHah;
-      }
+      ipfsHash = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
+
     }
-
     // todo service ipfs
-    this.MailService.createEmail(this.sendEmailForm.value).subscribe(data => {
-      console.log(data);
-    })
+    console.log(ipfsHash);
+    //add mail to inbox and outbox
 
-    // create mail
+    let mailId = await this.MailService.createEmail(this.sendEmailForm.value).toPromise();
 
-    //send mail to 
+    //set in contract 
 
     //listen to event
 
-    //add mail to inbox and outbox
+    //fire socket
 
     this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
   }
