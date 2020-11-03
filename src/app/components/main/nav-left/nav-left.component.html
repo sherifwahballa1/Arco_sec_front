@@ -1,0 +1,25 @@
+<div class="container bootdey">
+  <div class="email-app mb-4">
+    <nav class="nav-left">
+      <button (click)="openMessage()" class="btn btn-danger btn-block">New Email</button>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="inboxMails()"><i class="fa fa-inbox"></i> Inbox <span class="badge"
+              [ngClass]="numberOfMessage > 0 ? 'badge-danger': ''">{{numberOfMessage}}</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-star"></i> Stared</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="getSentMails()"><i class="fa fa-rocket"></i> Sent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-trash-o"></i> Trash</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-bookmark"></i> Important</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

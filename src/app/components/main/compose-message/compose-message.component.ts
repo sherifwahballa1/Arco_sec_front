@@ -10,6 +10,7 @@ import { MailService } from '../../../core/services/mail.service';
 import { Web3Service } from '../../../util/web3.service'
 import { LIST_ABI, networks_API } from './mailTransferConfig';
 
+declare const Buffer;
 
 @Component({
   selector: 'app-compose-message',
@@ -26,6 +27,8 @@ export class ComposeMessageComponent implements OnInit {
   emailValue: string = '';
 
   myEmailAddress: string = '';
+  buffer: [];
+  fileShow: any;
 
   @ViewChild('mySelect', { static: true }) mySelect: any;
 
@@ -64,7 +67,8 @@ export class ComposeMessageComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onFileChange(e) {
+
+  async onFileChange(e) {
     if (e.target.value !== null) {
       if (/\.(jpe?g|png|gif|pdf)$/i.test(e.target.files[0].name) === false) {
         this.isFileNameExists = true;
@@ -74,13 +78,15 @@ export class ComposeMessageComponent implements OnInit {
       } else {
         let reader = new FileReader();
         // this.fileSrc = e.target.files;
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = (_event) => {
+        await reader.readAsArrayBuffer(e.target.files[0]);
+         reader.onload = (_event) => {
           this.isFileExists = true;
           this.fileSrc = reader.result;
+          this.buffer = new Buffer(reader.result);
           this.isFileNameExists = false;
           this.fileName = '';
         }
+
       }
 
     }
@@ -123,7 +129,7 @@ export class ComposeMessageComponent implements OnInit {
   }
   async sendMail() {
 
-    //make loading here 
+    //make loading here
 
     if (!this.sendEmailForm.valid) {
       return this.sendEmailForm.markAllAsTouched();
@@ -131,9 +137,9 @@ export class ComposeMessageComponent implements OnInit {
     }
 
     let ipfsHash;
-    if (this.fileSrc) {
-      //send ipfs get hash 
-      ipfsHash = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
+    if (this.buffer) {
+      //send ipfs get hash
+      ipfsHash = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise();
 
     }
 
@@ -142,20 +148,16 @@ export class ComposeMessageComponent implements OnInit {
     let mailId = await this.MailService.createEmail(this.sendEmailForm.value).toPromise();
 
 
-    //set in contract 
+    //set in contract
 
 
     let mailTransferApi = await this.web3Service.loadContract(LIST_ABI);
-    console.log(mailTransferApi, 'mailTransferApi');
+    // console.log(mailTransferApi, 'mailTransferApi');
 
     if (this.fileSrc) {
-      let account = await this.web3Service.getAccount(0)
-      let addMail = await mailTransferApi.methods.addMail(ipfsHash, mailId['mailID'], '23').send({ from: account, gas: 6721975, gasPrice: '30000000' })
+      let account = await this.web3Service.getAccount(0);
+      let addMail = await mailTransferApi.methods.addMail(ipfsHash, mailId['mailID'], '23').send({ from: account, gas: 6721975, gasPrice: '30000000' });
     }
-
-
-    let file = await mailTransferApi.methods.getHash(mailId['mailID']).call();
-    let url = 'https://ipfs.io/ipfs/' + file;
 
     //fire socket
 

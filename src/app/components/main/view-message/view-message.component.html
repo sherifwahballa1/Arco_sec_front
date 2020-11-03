@@ -2,54 +2,23 @@
 
 <div class="container bootdey">
     <div class="email-app mb-4">
-        <nav class="nav-left">
-            <button (click)="openMessage()" class="btn btn-danger btn-block">New Email</button>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-star"></i> Stared</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-rocket"></i> Sent</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-trash-o"></i> Trash</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-bookmark"></i> Important</a>
-                </li>
-            </ul>
-        </nav>
+       <app-nav-left></app-nav-left>
 
         <div id="email1" class="sent-mail">
             <br>
-            
-            <h5 class="title" style = "font-family:georgia,garamond,serif;font-size:18px;font-style:bold;">Subject: Imports Notification</h5>
-            <h4><i class="fa fa-clock-o"  style = "font-size:20px;"></i> From Sarah Seif, Today, 3:47 PM</h4>
-            <button class="ReplyBtn"  > Reply <i class="w3-margin-left fa fa-mail-reply"></i></button>
-            <button class="ForwardBtn"  > Forward <i class="w3-margin-left fa fa-arrow-right"></i></button>
-            <!-- <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
-            <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a> -->
-            <hr>
-            <p>I am writing in reference to the current situation with the Skipton Airport Project. We have a number of questions which we hope you could answer.</p>
 
-               <p> First of all, could you please provide us with an update on where you are on the Skipton Airport Project. We would also appreciate it if you could clarify what the current issues with the delivery system are, and confirm when you expect them to be resolved.</p>
-                
-               <p> In addition, at the end of our last meeting we requested a copy of the latest project update report. Unfortunately, we have still not received it. We would appreciate it if you could forward this to us.</p>
-                
-                <p>Could you also please confirm whether the post-installation support covers the equipment 24 hours a day? And what is actually included in the support? In particular, we would like to have confirmation if the cost of parts and labour are included in the package? We require this information as soon as possible.</p>
-                
-                <p>And lastly, we are considering extending the period of the post-installation support from your company from 6 months to 12 months. We would be very grateful if you could provide us with a quote for this extension.</p>
-                
-               <p> I would really appreciate it if you could deal with these matters urgently.</p>
-                
-               <p> I look forward to hearing from you.</p>
-            
-            <p>Best Regards, <br>Sarah Seif</p>
+            <h5 class="title" style = "font-family:georgia,garamond,serif;font-size:18px;font-style:bold;">Subject: {{mail?.subject}} </h5>
+            <h4><i class="fa fa-clock-o"  style = "font-size:20px;"></i> From {{mail?.sender.name}}, {{mail?.createdAt | date}}</h4>
+            <hr>
+            <p>
+              {{mail?.body}}
+            </p>
+
+            <a [href]="url" *ngIf="isFile" target="_blank">File</a>
+            <img [src]="file" *ngIf="isFile"/>
+
           </div>
-          
+
 
 
     </div>

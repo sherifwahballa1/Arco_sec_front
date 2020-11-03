@@ -34,6 +34,7 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ViewMessageComponent } from './components/main/view-message/view-message.component';
+import { NavLeftComponent } from './components/main/nav-left/nav-left.component';
 const config: SocketIoConfig = { url: 'http://localhost:5100', options: {} };
 
 @NgModule({
@@ -48,7 +49,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5100', options: {} };
     ViewMessageComponent,
     ForgetPasswordComponent,
     ComposeMessageComponent,
-    HeaderComponent
+    HeaderComponent,
+    NavLeftComponent
   ],
   imports: [
     BrowserAnimationsModule,

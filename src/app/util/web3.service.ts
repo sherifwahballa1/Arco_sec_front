@@ -38,7 +38,7 @@ export class Web3Service {
     // } else {
     //   window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
     // }
-    this.web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:8545");
+    this.web3 = new Web3("HTTP://127.0.0.1:9545");
     const accounts = await this.web3.eth.getAccounts();
     this.account = accounts[0];
 
@@ -46,6 +46,7 @@ export class Web3Service {
   }
 
   async loadContract(LIST_ABI) {
+
     let TODO_LIST_ADDRESS = networks_API[this.networkId].address;
     return await new this.web3.eth.Contract(LIST_ABI, TODO_LIST_ADDRESS);
 
@@ -54,7 +55,7 @@ export class Web3Service {
   async getAccount(numberOfAccount) {
     const accounts = await this.web3.eth.getAccounts();
     this.account = accounts[numberOfAccount];
-    return this.account
+    return this.account;
   }
 
 

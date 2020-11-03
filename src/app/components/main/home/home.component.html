@@ -3,26 +3,7 @@
 
 <div class="container bootdey">
 <div class="email-app mb-4">
-    <nav class="nav-left">
-        <button (click)="openMessage()" class="btn btn-danger btn-block">New Email</button>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-star"></i> Stared</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-rocket"></i> Sent</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-trash-o"></i> Trash</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-bookmark"></i> Important</a>
-            </li>
-        </ul>
-    </nav>
+    <app-nav-left></app-nav-left>
     <main class="inbox">
         <div class="toolbar">
             <div class="btn-group">
@@ -76,46 +57,25 @@
         </div>
 
         <ul class="messages">
-            <li class="message unread" (click) = "viewMessage($event)">
+            <li *ngFor="let mail of allMails" class="message" [ngClass]="mail.isRead || m ? 'read': 'unread'" (click) = "viewMessage(mail._id)">
                 <a>
                     <div class="actions">
                         <span class="action"><i class="fa fa-square-o"></i></span>
                         <span class="action"><i class="fa fa-star-o"></i></span>
                     </div>
                     <div class="header">
-                        <span class="from">Sarah Seif</span>
+                        <span class="from">{{mail.sender.name}}</span>
                         <span class="date">
-                        <span class="fa fa-paper-clip"></span> Today, 3:47 PM</span>
+                        <span class="fa fa-paper-clip"></span> {{mail.createdAt | date}}</span>
                     </div>
                     <div class="title">
-                        Imports Notification
+                        {{mail.subject}}
                     </div>
                     <div class="description">
-                        I am writing in reference to the current situation with the Skipton Airport Project. We have a number of questions which we hope you could answer.
-                        <p> First of all, could you please provide us with an update on where you are on the Skipton Airport Project. We would also appreciate it if you could clarify what the current issues with the delivery system are, and confirm when you expect them to be resolved.</p>
-                       
-                    </div>
-                </a>
-            </li>
-            <li class="message" (click) = "viewMessage($event)">
-                <a>
-                    <div class="actions">
-                        <span class="action"><i class="fa fa-square-o"></i></span>
-                        <span class="action"><i class="fa fa-star-o"></i></span>
-                    </div>
-                    <div class="header">
-                        <span class="from">David Mitchell</span>
-                        <span class="date">
-                        <span class="fa fa-paper-clip"></span> October 27th, 2020</span>
-                    </div>
-                    <div class="title">
-                        Skipton Airport Project
-                    </div>
-                    <div class="description">
-                       <p>Dear Mr McAdam,</p>
-                       <p>With reference to your last email regarding the current situation with the Skipton Airport Project, I can confirm the following:</p>
-                       <p>We successfully completed stage 2 on Monday and at present we are preparing to start stage 3. On the whole, the project is going well. We have not .......</p>
-                      
+                        <p>
+                          {{ mail.body }}
+                        </p>
+
                     </div>
                 </a>
             </li>

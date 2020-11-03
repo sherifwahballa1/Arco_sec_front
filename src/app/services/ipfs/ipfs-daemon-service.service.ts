@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { switchMap, map, tap } from 'rxjs/operators';
-import { Buffer } from 'buffer';
 import { ipfsToken } from './ipfsToken';
 
 @Injectable({
@@ -29,7 +28,8 @@ export class IpfsDaemonServiceService {
       map((res: any) => {
         // console.log(res, '////////////////////');
         // console.log(res.cid.toString());
-        return res.cid.toString();
+        // return res.cid.toString();
+        return res.path;
       })
     );
   }

@@ -47,7 +47,7 @@
     </label>
     <input id="file-upload" type="file" (change)="onFileChange($event)" />
     <label class="fileName" *ngIf="isFileNameExists">{{fileName}}</label>
-    <img [src]="fileSrc" *ngIf="isFileExists" class="imageUploaded" />
+    <!-- <img [src]="fileShow" *ngIf="isFileExists" class="imageUploaded" /> -->
     <!-- <button class="cancelImage">X</button> -->
   </mat-toolbar>
 </form>
