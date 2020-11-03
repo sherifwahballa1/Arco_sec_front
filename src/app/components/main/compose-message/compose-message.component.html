@@ -1,21 +1,29 @@
 <mat-toolbar color="primary">
   <span>My App</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button (click)="onCancelClick()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <button mat-icon-button (click)="onCancelClick()" class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon">
     <mat-icon>cancel</mat-icon>
   </button>
 </mat-toolbar>
 
-<form [formGroup]="sendEmailForm" >
+<form [formGroup]="sendEmailForm">
   <div class="form-group">
-    <input type="email" formControlName="receipeintEmail" class="form-control" placeholder="Recipient" (ngModelChange)="searchbyEmail($event)">
-    <mat-select  #mySelect (selectionChange)="emailSelected($event)">
+    <input type="email" formControlName="receipeintEmail" class="form-control" placeholder="Recipient"
+      (ngModelChange)="searchbyEmail($event)">
+    <mat-select #mySelect (selectionChange)="emailSelected($event)">
       <mat-option *ngFor="let mail of allMails " [value]="mail.email">{{mail.email}}</mat-option>
-  </mat-select>
+    </mat-select>
+    <span
+      *ngIf="sendEmailForm.controls['receipeintEmail']['errors']?.required && sendEmailForm.get('receipeintEmail').touched"
+      class="form-error" style="color: red;">required receipeintEmail</span>
   </div>
-  <h5>Subject</h5>
   <div class="form-group">
-    <textarea class="form-control" formControlName="subject" id="exampleFormControlTextarea1" rows="6"></textarea>
+    <input type="text" formControlName="subject" class="form-control" placeholder="subject">
+  </div>
+  <h5>body</h5>
+  <div class="form-group">
+    <textarea class="form-control" formControlName="body" id="exampleFormControlTextarea1" rows="6"></textarea>
   </div>
   <h5>Tags</h5>
   <div formArrayName="documentTags" class="form-group">
@@ -32,13 +40,13 @@
   </button>
 
   <mat-toolbar class="footer">
-    <input type="submit" value ="Send" (click)="sendMail()" class="send" />
+    <input type="submit" value="Send" (click)="sendMail()" class="send" />
     <!-- <input type="file" class="attach_file" /> -->
     <label for="file-upload" class="attach_file">
-        <mat-icon>attach_file</mat-icon>
+      <mat-icon>attach_file</mat-icon>
     </label>
     <input id="file-upload" type="file" (change)="onFileChange($event)" />
-    <label class="fileName" *ngIf="isFileNameExists" >{{fileName}}</label>
+    <label class="fileName" *ngIf="isFileNameExists">{{fileName}}</label>
     <img [src]="fileSrc" *ngIf="isFileExists" class="imageUploaded" />
     <!-- <button class="cancelImage">X</button> -->
   </mat-toolbar>

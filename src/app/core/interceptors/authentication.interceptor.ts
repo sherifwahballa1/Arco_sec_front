@@ -15,7 +15,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.tokenService.token) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: this.tokenService.token
+                    Authorization: this.tokenService.token,
+
                 }
             });
             // const cloned = request.clone({
@@ -25,12 +26,13 @@ export class AuthInterceptor implements HttpInterceptor {
             // return next.handle(cloned);
 
         } else if (this.tokenService.tokenTemp) {
-          request = request.clone({
-              setHeaders: {
-                  Authorization: this.tokenService.tokenTemp
-              }
-          });
-      }
+            request = request.clone({
+                setHeaders: {
+                    Authorization: this.tokenService.tokenTemp,
+
+                }
+            });
+        }
 
         return next.handle(request);
     }

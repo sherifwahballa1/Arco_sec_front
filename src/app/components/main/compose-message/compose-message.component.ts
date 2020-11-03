@@ -5,6 +5,8 @@ import { ArcosecService } from '../../../core/services/arcosec.service';
 import { Socket } from 'ngx-socket-io';
 import { TokenService } from '../../../core/authentication/token.service';
 import { IpfsService } from '../../../core/ipfs/ipfs.service';
+import { IpfsDaemonServiceService } from '../../../services/ipfs/ipfs-daemon-service.service';
+import { MailService } from '../../../core/services/mail.service';
 
 @Component({
   selector: 'app-compose-message',
@@ -31,7 +33,9 @@ export class ComposeMessageComponent implements OnInit {
     private tokenService: TokenService,
     public ipfsService: IpfsService,
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private IpfsDaemonServiceService: IpfsDaemonServiceService,
+    private MailService: MailService
   ) { }
 
   ngOnInit() {
@@ -47,7 +51,9 @@ export class ComposeMessageComponent implements OnInit {
     return this.formBuilder.group({
       receipeintEmail: new FormControl('', [Validators.required, Validators.email]),
       subject: new FormControl('', []),
-      documentTags: this.formBuilder.array([ this.createTag() ])
+      body: new FormControl('', []),
+      documentTags: this.formBuilder.array([this.createTag()]),
+      ipfsHash: new FormControl('', []),
     });
   }
 
@@ -57,7 +63,7 @@ export class ComposeMessageComponent implements OnInit {
 
   onFileChange(e) {
     if (e.target.value !== null) {
-      if ( /\.(jpe?g|png|gif)$/i.test(e.target.files[0].name) === false )  {
+      if (/\.(jpe?g|png|gif)$/i.test(e.target.files[0].name) === false) {
         this.isFileNameExists = true;
         this.fileName = e.target.files[0].name;
         this.isFileExists = false;
@@ -98,11 +104,11 @@ export class ComposeMessageComponent implements OnInit {
   };
 
 
-  addNewTag(){
+  addNewTag() {
     this.documentTags.push(this.createTag());
   }
 
-  deleteTag(i){
+  deleteTag(i) {
     this.documentTags.removeAt(i);
   }
 
@@ -112,14 +118,38 @@ export class ComposeMessageComponent implements OnInit {
       value: ''
     });
   }
-  sendMail() {
-    //send ipfs get hash 
+  async sendMail() {
+
+    //make loading here 
+
+    if (!this.sendEmailForm.valid) {
+      return this.sendEmailForm.markAllAsTouched();
+
+    }
+    let ipfsHash;
+
+    if (this.fileSrc) {
+      //send ipfs get hash 
+      let ipfsHah = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
+      if (ipfsHah) {
+        this.sendEmailForm.value['ipfsHash'] = ipfsHah;
+      }
+    }
+
     // todo service ipfs
+    this.MailService.createEmail(this.sendEmailForm.value).subscribe(data => {
+      console.log(data);
+    })
+
     // create mail
-    //send mail to contract
+
+    //send mail to 
+
     //listen to event
-      //add mail to inbox and outbox
-      this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
+
+    //add mail to inbox and outbox
+
+    this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
   }
 
 }

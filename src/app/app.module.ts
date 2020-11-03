@@ -33,7 +33,7 @@ import { ComposeMessageComponent } from './components/main/compose-message/compo
 import { HeaderComponent } from './components/header/header.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:5100', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
