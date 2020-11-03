@@ -37,9 +37,9 @@ export class IpfsDaemonServiceService {
   public getFile = (hash: string): Observable<Blob> =>
     from(this.ipfs.cat(hash)).pipe(
       switchMap((buffer: Buffer) => {
-
         const byteString = buffer.toString('base64');
         const url = `data:application/octet-stream;base64,${byteString}`;
+        console.log(hash);
 
         return this.httpClient.get(url, {
           responseType: 'blob'

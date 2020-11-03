@@ -1,4 +1,7 @@
-pragma solidity >=0.4.22 <0.7.0;
+// pragma solidity ^0.7.0;
+
+pragma solidity >=0.5.0 <0.8.0;
+// pragma experimental ABIEncoderV2;
 
 
 contract MailTransfer {
@@ -6,19 +9,19 @@ contract MailTransfer {
     mapping (string => mailStruct) private _idToMail;
     struct mailStruct {
         string hashIPFS;
-        address[] receiverAddresses;
+        address [] receiverAddresses;
     }
 
     event MailAdded(string randomNumber);
 
     function addMail(string memory hashIPFS, string memory mailId,
-                    address[] memory receiverAddresses, string memory randomNumber)
+                    address [] memory  receiverAddresses, string memory randomNumber)
                     public {
         require(bytes(_idToMail[mailId].hashIPFS).length == 0, "duplicate mail id");
         mailStruct storage mail = _idToMail[mailId];
         mail.hashIPFS = hashIPFS;
         mail.receiverAddresses = receiverAddresses;
-        mail.receiverAddresses.push(address(msg.sender));
+        mail.receiverAddresses.push(msg.sender);
         emit MailAdded(randomNumber);
     }
 

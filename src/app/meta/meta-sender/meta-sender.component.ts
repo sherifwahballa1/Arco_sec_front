@@ -28,21 +28,21 @@ export class MetaSenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('OnInit: ' + this.web3Service);
-    console.log(this);
-    this.watchAccount();
-    this.web3Service.artifactsToContract(metacoin_artifacts)
-      .then((MetaCoinAbstraction) => {
-        this.MetaCoin = MetaCoinAbstraction;
-        this.MetaCoin.deployed().then(deployed => {
-          console.log(deployed);
-          deployed.Transfer({}, (err, ev) => {
-            console.log('Transfer event came in, refreshing balance');
-            this.refreshBalance();
-          });
-        });
+    // console.log('OnInit: ' + this.web3Service);
+    // console.log(this);
+    // this.watchAccount();
+    // this.web3Service.artifactsToContract(metacoin_artifacts)
+    //   .then((MetaCoinAbstraction) => {
+    //     this.MetaCoin = MetaCoinAbstraction;
+    //     this.MetaCoin.deployed().then(deployed => {
+    //       console.log(deployed);
+    //       deployed.Transfer({}, (err, ev) => {
+    //         console.log('Transfer event came in, refreshing balance');
+    //         this.refreshBalance();
+    //       });
+    //     });
 
-      });
+    //   });
   }
 
   watchAccount() {

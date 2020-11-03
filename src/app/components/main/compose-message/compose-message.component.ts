@@ -7,6 +7,9 @@ import { TokenService } from '../../../core/authentication/token.service';
 import { IpfsService } from '../../../core/ipfs/ipfs.service';
 import { IpfsDaemonServiceService } from '../../../services/ipfs/ipfs-daemon-service.service';
 import { MailService } from '../../../core/services/mail.service';
+import { Web3Service } from '../../../util/web3.service'
+import { LIST_ABI, networks_API } from './mailTransferConfig';
+
 
 @Component({
   selector: 'app-compose-message',
@@ -35,7 +38,8 @@ export class ComposeMessageComponent implements OnInit {
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private IpfsDaemonServiceService: IpfsDaemonServiceService,
-    private MailService: MailService
+    private MailService: MailService,
+    private web3Service: Web3Service
   ) { }
 
   ngOnInit() {
@@ -62,7 +66,7 @@ export class ComposeMessageComponent implements OnInit {
 
   onFileChange(e) {
     if (e.target.value !== null) {
-      if (/\.(jpe?g|png|gif)$/i.test(e.target.files[0].name) === false) {
+      if (/\.(jpe?g|png|gif|pdf)$/i.test(e.target.files[0].name) === false) {
         this.isFileNameExists = true;
         this.fileName = e.target.files[0].name;
         this.isFileExists = false;
@@ -132,19 +136,46 @@ export class ComposeMessageComponent implements OnInit {
       ipfsHash = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
 
     }
-    // todo service ipfs
-    console.log(ipfsHash);
+
     //add mail to inbox and outbox
 
-    let mailId = await this.MailService.createEmail(this.sendEmailForm.value).toPromise();
+    // let mailId = await this.MailService.createEmail(this.sendEmailForm.value).toPromise();
 
     //set in contract 
+
+
+    let mailTransferApi = await this.web3Service.loadContract(LIST_ABI);
+    console.log(mailTransferApi, 'mailTransferApi');
+
+    if (this.fileSrc) {
+      let addMail = await mailTransferApi.methods.addMail(ipfsHash, '83', ['0xe621E2203D2Ccb87FeF9e40e694E3F5185280362'], '23').send({ from: "0xe621E2203D2Ccb87FeF9e40e694E3F5185280362", gas: 6721975, gasPrice: '30000000' })
+      // let addMail = await mailTransferApi.methods.addMail(ipfsHash, '8', ['0xe621E2203D2Ccb87FeF9e40e694E3F5185280362'], '23').call({ from: "0xe621E2203D2Ccb87FeF9e40e694E3F5185280362" })
+      // console.log(addMail.events.MailAdded.returnValues.randomNumber, 'addMail');
+      console.log(addMail, 'addMail');
+    }
+
+    let file = await mailTransferApi.methods.getHash('83').call({ from: "0xe621E2203D2Ccb87FeF9e40e694E3F5185280362" });
+    let url = 'https://ipfs.io/ipfs/' + file
+    console.log(url);
+    // this.IpfsDaemonServiceService.getFile(file).subscribe(data => {
+
+    //   console.log(data, 'fileIpfs');
+    // })
+
+
+
+    // mailTransferApi.methods.addMail(ipfsHash, mailId,, '23').send({ from: this.account }).once('receipt', (receipt) => {
+    //   console.log(receipt, 'receipt');
+    //   this.createForm.reset();
+    //   this.listOfTasks();
+    // })
+
 
     //listen to event
 
     //fire socket
 
-    this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
+    // this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
   }
 
 }
