@@ -4,6 +4,12 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import { ArcosecService } from '../../../core/services/arcosec.service';
 import { Socket } from 'ngx-socket-io';
 import { TokenService } from '../../../core/authentication/token.service';
+import { IpfsService } from '../../../core/ipfs/ipfs.service';
+import { IpfsDaemonServiceService } from '../../../services/ipfs/ipfs-daemon-service.service';
+import { MailService } from '../../../core/services/mail.service';
+import { Web3Service } from '../../../util/web3.service'
+import { LIST_ABI, networks_API } from './mailTransferConfig';
+
 
 @Component({
   selector: 'app-compose-message',
@@ -28,8 +34,12 @@ export class ComposeMessageComponent implements OnInit {
     private arcoService: ArcosecService,
     private socket: Socket,
     private tokenService: TokenService,
+    public ipfsService: IpfsService,
     public dialogRef: MatDialogRef<ComposeMessageComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private IpfsDaemonServiceService: IpfsDaemonServiceService,
+    private MailService: MailService,
+    private web3Service: Web3Service
   ) { }
 
   ngOnInit() {
@@ -45,7 +55,8 @@ export class ComposeMessageComponent implements OnInit {
     return this.formBuilder.group({
       receipeintEmail: new FormControl('', [Validators.required, Validators.email]),
       subject: new FormControl('', []),
-      documentTags: this.formBuilder.array([ this.createTag() ])
+      body: new FormControl('', []),
+      documentTags: this.formBuilder.array([this.createTag()])
     });
   }
 
@@ -55,7 +66,7 @@ export class ComposeMessageComponent implements OnInit {
 
   onFileChange(e) {
     if (e.target.value !== null) {
-      if ( /\.(jpe?g|png|gif)$/i.test(e.target.files[0].name) === false )  {
+      if (/\.(jpe?g|png|gif|pdf)$/i.test(e.target.files[0].name) === false) {
         this.isFileNameExists = true;
         this.fileName = e.target.files[0].name;
         this.isFileExists = false;
@@ -96,11 +107,11 @@ export class ComposeMessageComponent implements OnInit {
   };
 
 
-  addNewTag(){
+  addNewTag() {
     this.documentTags.push(this.createTag());
   }
 
-  deleteTag(i){
+  deleteTag(i) {
     this.documentTags.removeAt(i);
   }
 
@@ -110,7 +121,44 @@ export class ComposeMessageComponent implements OnInit {
       value: ''
     });
   }
-  sendMail() {
+  async sendMail() {
+
+    //make loading here 
+
+    if (!this.sendEmailForm.valid) {
+      return this.sendEmailForm.markAllAsTouched();
+
+    }
+
+    let ipfsHash;
+    if (this.fileSrc) {
+      //send ipfs get hash 
+      ipfsHash = await this.IpfsDaemonServiceService.addFile(this.fileSrc).toPromise()
+
+    }
+
+    //add mail to inbox and outbox
+
+    let mailId = await this.MailService.createEmail(this.sendEmailForm.value).toPromise();
+
+
+    //set in contract 
+
+
+    let mailTransferApi = await this.web3Service.loadContract(LIST_ABI);
+    console.log(mailTransferApi, 'mailTransferApi');
+
+    if (this.fileSrc) {
+      let account = await this.web3Service.getAccount(0)
+      let addMail = await mailTransferApi.methods.addMail(ipfsHash, mailId['mailID'], '23').send({ from: account, gas: 6721975, gasPrice: '30000000' })
+    }
+
+
+    let file = await mailTransferApi.methods.getHash(mailId['mailID']).call();
+    let url = 'https://ipfs.io/ipfs/' + file;
+
+    //fire socket
+
     this.socket.emit('mailRequest', { sender: this.myEmailAddress, receiver: this.sendEmailForm.get('receipeintEmail').value });
   }
 
