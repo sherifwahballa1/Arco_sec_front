@@ -16,10 +16,11 @@ export class Web3Service {
   public web3: any;
   private accounts: string[];
   public ready = false;
-  private account: string = null;
+
   public contract: any;
   public memeHash: '';
   public networkId;
+  public account;
 
   public accountsObservable = new Subject<string[]>();
 
@@ -38,6 +39,9 @@ export class Web3Service {
     //   window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
     // }
     this.web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:8545");
+    const accounts = await this.web3.eth.getAccounts();
+    this.account = accounts[0];
+
     this.networkId = await this.web3.eth.net.getId();
   }
 
@@ -45,6 +49,12 @@ export class Web3Service {
     let TODO_LIST_ADDRESS = networks_API[this.networkId].address;
     return await new this.web3.eth.Contract(LIST_ABI, TODO_LIST_ADDRESS);
 
+  }
+
+  async getAccount(numberOfAccount) {
+    const accounts = await this.web3.eth.getAccounts();
+    this.account = accounts[numberOfAccount];
+    return this.account
   }
 
 
