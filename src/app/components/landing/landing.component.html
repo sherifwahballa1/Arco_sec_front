@@ -1,7 +1,7 @@
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
-      <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()"  class="sign-in-form">
+      <form [formGroup]="loginForm" class="sign-in-form">
         <h2 class="title">Sign in</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
@@ -34,7 +34,7 @@
           </a>
         </div>
       </form>
-      <form [formGroup]="signupForm" (ngSubmit)="submitSignupForm()" class="sign-up-form">
+      <form [formGroup]="signupForm" class="sign-up-form">
         <h2 class="title">Sign up</h2>
         <div *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
               <small  *ngIf="signupForm.get('name').errors?.required">*Username is required</small>
