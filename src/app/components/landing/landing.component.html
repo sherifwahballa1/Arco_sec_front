@@ -1,15 +1,15 @@
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
-      <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()"  class="sign-in-form">
+      <form [formGroup]="loginForm" class="sign-in-form">
         <h2 class="title">Sign in</h2>
         <div class="input-field">
-          <i class="fas fa-user"></i>
+          <i class="fa fa-user"></i>
           <input formControlName="email" placeholder="Email" type="email" class="INPUT" [class.is-invalid]="forgetFlag">
           <!-- <input type="text" placeholder="Username" /> -->
         </div>
         <div class="input-field">
-          <i class="fas fa-lock"></i>
+          <i class="fa fa-lock"></i>
           <!-- <input type="password" placeholder="Password" /> -->
           <input formControlName="password" placeholder="Password" minLength="10" maxLength="25" type="password"
             class="INPUT">
@@ -21,20 +21,20 @@
         <p class="social-text">Or Sign in with social platforms</p>
         <div class="social-media">
           <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
+            <i class="fa fa-facebook-f"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
+            <i class="fa fa-twitter"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
+            <i class="fa fa-google"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
+            <i class="fa fa-linkedin"></i>
           </a>
         </div>
       </form>
-      <form [formGroup]="signupForm" (ngSubmit)="submitSignupForm()" class="sign-up-form">
+      <form [formGroup]="signupForm" class="sign-up-form">
         <h2 class="title">Sign up</h2>
         <div *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
               <small  *ngIf="signupForm.get('name').errors?.required">*Username is required</small>
@@ -46,7 +46,7 @@
                 characters and numbers only without whitespace</small>
             </div>
         <div class="input-field">
-          <i class="fas fa-user"></i>
+          <i class="fa fa-user"></i>
           <input type="text" placeholder="Username" formControlName="name" />
         </div>
         <div *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
@@ -54,7 +54,7 @@
               <small  *ngIf="signupForm.get('email').errors?.email">*Invalid Email</small>
             </div>
         <div class="input-field">
-          <i class="fas fa-envelope"></i>
+          <i class="fa fa-envelope"></i>
           <input formControlName="email" type="email" placeholder="Email" />
         </div>
         <div *ngIf="password.invalid && password.touched">
@@ -64,28 +64,28 @@
                 least one special and capital character</small>
             </div>
         <div class="input-field">
-          <i class="fas fa-lock"></i>
+          <i class="fa fa-lock"></i>
           <input formControlName="password" type="password" placeholder="Password" />
         </div>
         <small  *ngIf="signupForm.errors?.misMatch">*confirm password and password not match</small>
         <div class="input-field">
-          <i class="fas fa-lock"></i>
+          <i class="fa fa-lock"></i>
           <input formControlName="confirmPassword" placeholder="Confirm Password" type="password">
         </div>
         <input type="submit" [disabled]="clickedSignup" class="btn" (click)="submitSignupForm('signup')" value="Sign up" />
         <p class="social-text">Or Sign up with social platforms</p>
         <div class="social-media">
           <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
+            <i class="fa fa-facebook-f"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
+            <i class="fa fa-twitter"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
+            <i class="fa fa-google"></i>
           </a>
           <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
+            <i class="fa fa-linkedin"></i>
           </a>
         </div>
       </form>
